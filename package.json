@@ -1,0 +1,14 @@
+{
+  "name": "spapptify_server",
+  "version": "1.0.0",
+  "description": "server for spapptify",
+  "main": "index.js",
+  "author": "pattysc.github.com",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.15.3",
+    "cors": "^2.8.1",
+    "express": "^4.15.0",
+    "querystring": "^0.2.0"
+  }
+}
