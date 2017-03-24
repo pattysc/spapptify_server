@@ -20,13 +20,14 @@ var auth = {
   },
   json: true
 }
-var token = "Bearer "
+var token
 
 app.get('/auth', function(req, res){
   axios(auth).then(
     function(data){
+      console.log('OMG YAAAAAAAAAY!' + data.data.access_token);
       res.json({message: 'yay'})
-      token += data.data.access_token
+      token = `Bearer ${data.data.access_token}`
     }
   ).catch(function(data){
     console.log(data)
@@ -45,7 +46,7 @@ function playlist(ids, token){
 }
 
 app.get('/make', function(req, res){
-  console.log('in /make get');
+  console.log('in /make get', req.query);
   let ids = req.query.ids
   axios(playlist(ids, token)).then(
     function(data){
