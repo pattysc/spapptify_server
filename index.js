@@ -2,8 +2,8 @@ var express = require('express')
 var axios = require('axios')
 var cors = require('cors')
 var querystring = require('querystring')
+var config = require('./config');
 var app = express()
-
 var port = process.env.PORT || 8080
 
 app.use(cors())
@@ -15,7 +15,7 @@ var auth = {
     grant_type: 'client_credentials'
   }),
   headers: {
-    'Authorization': 'Basic ' + (Buffer('41929642bc364b3f9d6a1e261b36cc87:5393e8db6e4c4d1abba9364760ab2463').toString('base64')),
+    'Authorization': 'Basic ' + (Buffer(config.spotifykey).toString('base64')),
     'Content-Type': 'application/x-www-form-urlencoded'
   },
   json: true
@@ -25,7 +25,6 @@ var token
 app.get('/auth', function(req, res){
   axios(auth).then(
     function(data){
-      console.log('OMG YAAAAAAAAAY!' + data.data.access_token);
       res.json({message: 'yay'})
       token = `Bearer ${data.data.access_token}`
     }
@@ -36,12 +35,13 @@ app.get('/auth', function(req, res){
 })
 
 function playlist(ids, token){
-  return {method: 'GET',
-  url: `https://api.spotify.com/v1/recommendations?seed_artists=${ids}`,
-  headers: {
-    'Authorization': token,
-    'Content-Type': 'application/x-www-form-urlencoded'
-  },
+  return {
+    method: 'GET',
+    url: `https://api.spotify.com/v1/recommendations?seed_artists=${ids}`,
+    headers: {
+      'Authorization': token,
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
   json: true}
 }
 
