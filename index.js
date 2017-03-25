@@ -2,9 +2,9 @@ var express = require('express')
 var axios = require('axios')
 var cors = require('cors')
 var querystring = require('querystring')
-var config = require('./config');
 var app = express()
 var port = process.env.PORT || 8080
+const KEY = require('./config').spotifykey;
 
 app.use(cors())
 
@@ -15,7 +15,7 @@ var auth = {
     grant_type: 'client_credentials'
   }),
   headers: {
-    'Authorization': 'Basic ' + (Buffer(config.spotifykey).toString('base64')),
+    'Authorization': 'Basic ' + (Buffer(KEY).toString('base64')),
     'Content-Type': 'application/x-www-form-urlencoded'
   },
   json: true
