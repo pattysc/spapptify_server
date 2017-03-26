@@ -2,11 +2,13 @@ var express = require('express')
 var axios = require('axios')
 var cors = require('cors')
 var querystring = require('querystring')
+var bodyParser = require('body-parser')
 var app = express()
 var port = process.env.PORT || 8080
 const KEY = require('./config').spotifykey;
 
 app.use(cors())
+app.use(bodyParser.json())
 
 var auth = {
   method: 'POST',
