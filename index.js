@@ -53,7 +53,7 @@ app.get('/make', function(req, res){
   axios(playlist(ids, token)).then(
     function(data){
       console.log(data);
-      res.send(data.data)
+      res.json(data.data)
     }
   ).catch(function(data){
     console.log(data)
