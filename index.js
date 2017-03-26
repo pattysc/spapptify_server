@@ -5,7 +5,7 @@ var querystring = require('querystring')
 var bodyParser = require('body-parser')
 var app = express()
 var port = process.env.PORT || 8080
-const KEY = require('./config').spotifykey;
+const KEY = '1929642bc364b3f9d6a1e261b36cc87:5393e8db6e4c4d1abba9364760ab2463'
 
 app.use(cors())
 app.use(bodyParser.json())
